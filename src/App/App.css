@@ -1,0 +1,28 @@
+
+.app {
+  background-color: #ffffff;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 75px 1fr;
+  height: 100vh;
+  width: 100vw;
+}
+
+.header {
+  background-color: #f0f0f0;
+  box-shadow: 3px 3px 6px #c0c0c0;
+  font-size: 20px;
+  margin-left: 30px;
+  margin-right: 30px;
+  padding: 20px;
+  text-align: center;
+}
+
+.card-folder {
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;  
+  padding-left: 20px;
+  padding-right: 20px;
+}

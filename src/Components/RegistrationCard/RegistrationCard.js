@@ -3,6 +3,7 @@ import '../card.css';
 
 class RegistrationCard extends Component {
 
+  // eslint-disable-next-line
   constructor(props) {
     super(props);    
   }
@@ -17,19 +18,29 @@ class RegistrationCard extends Component {
         <div>          
           <table>
             <tbody>
-              <tr>
-                <td><b>ID:</b></td><td>{this.props.credential.id.substring(0, 20)}...</td>
-                <td><b>Attestation:</b></td><td>{this.props.credential.attestationObject.substring(0, 20)}...</td>
-                <td><b>Challenge:</b></td><td>{clientData.challenge}</td>
-                <td><b>Algorithm:</b></td><td>{clientData.hashAlgorithm}</td>
-                <td><b>Origin:</b></td><td>{clientData.origin}</td>
-                <td><b>Type:</b></td><td>{this.props.credential.type}</td>
-              </tr>
+              <tr><td><b>ID:</b></td><td>{this.props.credential.id.substring(0, 30)}...</td></tr>
+              <tr><td><b>Attestation:</b></td><td>{this.props.credential.response.attestationObject.substring(0, 40)}...</td></tr>
+              <tr><td><b>Challenge:</b></td><td>{clientData.challenge}</td></tr>
+              <tr><td><b>Algorithm:</b></td><td>{clientData.hashAlgorithm}</td></tr>
+              <tr><td><b>Origin:</b></td><td>{clientData.origin}</td></tr>
+              <tr><td><b>Type:</b></td><td>{this.props.credential.type}</td></tr>              
             </tbody>
           </table>
         </div>
     } else {
-      results = <div></div>
+      results =
+        <div>          
+            <table>
+              <tbody>
+                <tr><td><b>ID:</b></td><td></td></tr>
+                <tr><td><b>Attestation:</b></td><td></td></tr>
+                <tr><td><b>Challenge:</b></td><td></td></tr>
+                <tr><td><b>Algorithm:</b></td><td></td></tr>
+                <tr><td><b>Origin:</b></td><td></td></tr>
+                <tr><td><b>Type:</b></td><td></td></tr>              
+              </tbody>
+            </table>
+          </div>
     }
 
     return(

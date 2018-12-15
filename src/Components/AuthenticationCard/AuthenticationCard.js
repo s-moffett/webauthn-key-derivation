@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './AuthenticationCard.css';
 import '../card.css';
 
 class AuthenticationCard extends Component {
 
+  // eslint-disable-next-line
   constructor(props) {
     super(props);
   }
@@ -15,41 +15,24 @@ class AuthenticationCard extends Component {
       authenticated = "Yes";
     }
 
-    var results;
-    if(this.props.isUserAuthenticated) {
-      results = 
-        <table>
-          <tbody>
-            <tr>
-              <td>Authenticated:</td><td>{authenticated}</td>
-            </tr>
-          </tbody>
-        </table>  
-    } else {
-      results = <div></div>
-    }
-
     return(
       <div className="card">
         <div className="card-header">
           <span>Authentication</span>
         </div>
         <div className="card-body">
-          <div>            
-            <table>
-              <tbody>
-                <tr>
-                  <td>Username:</td><td>{this.props.username}</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="card-body-component-div">            
+            <p>Username: {this.props.username}</p>
           </div>
-          <div>          
+          <div className="card-body-component-div">          
             <button className="card-button" onClick={this.props.authenticateUser}>Authenticate</button>
           </div>
         </div>
         <div className="card-footer">
-          {results}      
+          <div className="centered">
+            <p>Authenticated:</p>
+            <span>{authenticated}</span>
+          </div> 
         </div>
       </div>
     );        

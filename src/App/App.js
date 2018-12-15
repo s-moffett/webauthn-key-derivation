@@ -44,10 +44,15 @@ class App extends Component {
   authenticateUser() {
     if(this.state.credential !== undefined && this.state.credential.rawId !== undefined) {
       var id = Uint8Array.from(this.state.credential.rawId.split(','));
-      var authenticated = AuthenticateUser(id);
-      this.setState({
-        isUserAuthenticated: authenticated
-      });
+      AuthenticateUser(id).then((credential) => {
+        this.setState({
+          isUserAuthenticated: true
+        });
+      }).catch((err) => {
+        this.setState({
+          isUserAuthenticated: false
+        });
+      });      
     }
   }
 
@@ -55,19 +60,35 @@ class App extends Component {
   deriveKey() {
     if(this.state.credential !== undefined && this.state.credential.rawId !== undefined) {
       var id = Uint8Array.from(this.state.credential.rawId.split(','));
-      var key = DeriveKey(id, this.state.pin);
-      this.setState({
-        encryptionKey: key
-      });
+      DeriveKey(id, this.state.pin).then((credential) => {
+        crypto.subtle.digest("SHA-256", credential.response.signature).then((hash) => {                  
+          console.log("Encryption key: " + new Uint8Array(hash).toString());
+          this.setState({
+            encryptionKey: new Uint8Array(hash).toString()
+          });
+        });
+      }).catch((err) => {
+        return;
+      });      
     }    
   }
 
   // Register a user and hardware key.
-  registerUser() {
-    var credential = RegisterUser(this.state.username);
-    this.setState({
-      credential: credential
-    });
+  registerUser() {    
+    RegisterUser(this.state.username).then((rawCredential) => {
+      var credential = {
+        id: rawCredential.id,
+        rawId: new Uint8Array(rawCredential.rawId).toString(),
+        response: {
+          attestationObject: new Uint8Array(rawCredential.response.attestationObject).toString(),
+          clientDataJSON: new Uint8Array(rawCredential.response.clientDataJSON).toString()
+        },
+        type: 'public-key'
+      };      
+      this.setState({
+        credential: credential
+      });
+    });        
   }
 
   render() {

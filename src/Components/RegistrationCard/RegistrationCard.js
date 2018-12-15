@@ -12,7 +12,7 @@ class RegistrationCard extends Component {
     var results;
     if(this.props.credential !== undefined && this.props.credential.response !== undefined) {
       var clientDataJSON = new TextDecoder().decode(new Uint8Array(this.props.credential.response.clientDataJSON.split(",")));
-      var clientData = JSON.parse(clientDataJSON);
+      var clientData = JSON.parse(clientDataJSON);      
 
       results = 
         <div>          

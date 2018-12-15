@@ -2,7 +2,7 @@
 export function RegisterUser(username) {
   return navigator.credentials.create({
     publicKey: {
-      challenge: new Uint8Array(),
+      challenge: new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]),
       rp: {        
         name: "Capstone Project"
       },

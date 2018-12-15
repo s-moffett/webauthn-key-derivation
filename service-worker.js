@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/webauthn-key-derivation/precache-manifest.9516989d59c7344912753a2ae3bd7c3b.js"
+  "/webauthn-key-derivation/precache-manifest.4ad8a2930749bb19b2d5bc4ddb86e507.js"
 );
 
 workbox.clientsClaim();
